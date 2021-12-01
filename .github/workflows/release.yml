@@ -27,6 +27,10 @@ jobs:
             - name: Assemble release info
               id: release_info
               uses: link108/releaseinfo@master
+              with:
+                  tag: test_tag
+                  repository: test
+                  repoOwner: link108
             - name: Echo environment
               run: |
                   echo "release version: ${{ steps.release_info.outputs.RELEASE_VERSION }}"

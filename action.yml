@@ -1,5 +1,24 @@
 name: 'Spinnaker Release Info'
 description: 'Retrieve previous tag of same type'
+inputs:
+  tag:
+    description: 'the tag triggering this action'
+    required: true
+    default: default_tag
+  repository:
+    description: 'the repository  to modify'
+    required: true
+  repoOwner:
+    description: 'the owner of the repositories to modify'
+    required: true
+    default: spinnakerbot
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  args:
+  - '--tag'
+  - ${{ inputs.tag }}
+  - '--repository'
+  - ${{ inputs.repository }}
+  - '--repo-owner'
+  - ${{ inputs.repoOwner }}

@@ -27,21 +27,21 @@ class ReleaseInfo : CliktCommand() {
         const val BASE_BRANCH = "master"
     }
 
-//    private val version by option("--ref", help = "the release ref triggering this dependency bump").convert { ref ->
-//        if (!ref.startsWith(REF_PREFIX)) {
-//            fail("Ref '$ref' is not a valid release ref")
-//        }
-//        ref.removePrefix(REF_PREFIX)
-//    }.required()
+    private val version by option("--ref", help = "the release ref triggering this dependency bump").convert { ref ->
+        if (!ref.startsWith(REF_PREFIX)) {
+            fail("Ref '$ref' is not a valid release ref")
+        }
+        ref.removePrefix(REF_PREFIX)
+    }.required()
 
-//    private val tag by option(help = "the tag that triggered the build")
-//        .required()
-//
-//    private val repository by option(help = "the repository to gather release info for")
-//        .required()
-//
-//    private val repoOwner by option(help = "the owner of the repositories to modify")
-//        .required()
+    private val tag by option(help = "the tag that triggered the build")
+        .required()
+
+    private val repository by option(help = "the repository to gather release info for")
+        .required()
+
+    private val repoOwner by option(help = "the owner of the repositories to modify")
+        .required()
 
     private val oauthToken by lazy {
         System.getenv(GITHUB_OAUTH_TOKEN_ENV_NAME)
@@ -55,9 +55,9 @@ class ReleaseInfo : CliktCommand() {
         .default("https://api.github.com")
 
     override fun run() {
-//        logger.info { "Tag: " + tag }
-//        logger.info { "RepoOnwer: " + repoOwner }
-//        logger.info { "Repository: " + repository }
+        logger.info { "Tag: " + tag }
+        logger.info { "RepoOnwer: " + repoOwner }
+        logger.info { "Repository: " + repository }
         logger.info { "HELLO WORLD" }
     }
 }
