@@ -34,6 +34,9 @@ class ReleaseInfo : CliktCommand() {
         ref.removePrefix(REF_PREFIX)
     }.required()
 
+    private val tag by option(help = "the tag that triggered the build")
+        .required()
+
     private val repository by option(help = "the repository to gather release info for")
         .required()
 
