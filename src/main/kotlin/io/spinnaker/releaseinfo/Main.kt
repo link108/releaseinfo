@@ -34,8 +34,8 @@ class ReleaseInfo : CliktCommand() {
 //        ref.removePrefix(REF_PREFIX)
 //    }.required()
 
-//    private val tag by option(help = "the tag that triggered the build")
-//        .required()
+    private val tag by option(help = "the tag that triggered the build")
+        .required()
 
     private val repository by option(help = "the repository to gather release info for")
         .required()
@@ -55,6 +55,9 @@ class ReleaseInfo : CliktCommand() {
         .default("https://api.github.com")
 
     override fun run() {
+        logger.info { "Tag: " + tag }
+        logger.info { "RepoOnwer: " + repoOwner }
+        logger.info { "Repository: " + repository }
         logger.info { "HELLO WORLD" }
     }
 }
