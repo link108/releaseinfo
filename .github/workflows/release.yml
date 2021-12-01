@@ -27,7 +27,7 @@ jobs:
                       ${{ runner.os }}-gradle-
             - name: Assemble release info
               id: release_info
-              uses: link108/releaseinfo@latest
+              uses: link108/releaseinfo@master
             - name: Echo environment
               run: |
                   echo "release version: ${{ steps.release_info.outputs.RELEASE_VERSION }}"
