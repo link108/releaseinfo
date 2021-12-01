@@ -33,6 +33,10 @@ tasks.withType<Test> {
     }
 }
 
+application {
+    mainClass.set("io.spinnaker.releaseinfo.MainKt")
+}
+
 ktlint {
     enableExperimentalRules.set(true)
 }
