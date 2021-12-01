@@ -34,7 +34,7 @@ tasks.withType<Test> {
 }
 
 application {
-    mainClassName = "io.spinnaker.release_info.MainKt"
+    mainClassName = "io.spinnaker.release_info.Main"
 }
 
 ktlint {
