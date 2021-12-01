@@ -27,13 +27,6 @@ class ReleaseInfo : CliktCommand() {
         const val BASE_BRANCH = "master"
     }
 
-    private val version by option("--ref", help = "the release ref triggering this dependency bump").convert { ref ->
-        if (!ref.startsWith(REF_PREFIX)) {
-            fail("Ref '$ref' is not a valid release ref")
-        }
-        ref.removePrefix(REF_PREFIX)
-    }.required()
-
     private val tag by option(help = "the tag that triggered the build")
         .required()
 
