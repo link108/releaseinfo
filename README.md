@@ -1,7 +1,6 @@
-# releaseinfo
+# releaseinfo [wip]
 
-Releaseinfo is a github action to automatically modify the version dependencies in a Spinnaker repo's
-`gradle.properties` files. It requires the following inputs:
+Releaseinfo is a github action to gather information required for releasing the project. It requires the following inputs:
 
 * **ref**: The git ref that triggered this workflow run. This should almost always be `${{ github.ref }}`
 * **key**: The key in the `gradle.properties` file that will be modified (e.g. `korkVersion`)
@@ -25,7 +24,7 @@ jobs:
       with:
         ref: ${{ github.ref }}
         key: korkVersion
-        repositories: fiat,echo
+        repository: fiat
       env:
         GITHUB_OAUTH: ${{ secrets.REPO_OAUTH_TOKEN }}
 ```
