@@ -1,9 +1,14 @@
 name: 'Spinnaker Release Info'
 description: 'Retrieve previous tag of same type'
 inputs:
+  ref:
+    description: 'the ref this action'
+    required: true
+    default: default_ref
   tag:
     description: 'the tag triggering this action'
     required: true
+    default: default_tag
   baseBranch:
     description: 'the branch to update'
     required: false
@@ -24,6 +29,8 @@ runs:
   args:
   - '--ref'
   - ${{ inputs.ref }}
+  - '--tag'
+  - ${{ inputs.tag }}
   - '--base-branch'
   - ${{ inputs.baseBranch }}
   - '--repository'
