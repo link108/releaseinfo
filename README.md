@@ -21,7 +21,7 @@ jobs:
   release-info:
     runs-on: ubuntu-latest
     steps:
-    - uses: spinnaker/releaseinfo@master
+    - uses: link108/releaseinfo@master
       with:
         ref: ${{ github.ref }}
         key: korkVersion

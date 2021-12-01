@@ -1,16 +1,16 @@
-name: 'Bump Spinnaker Dependencies'
-description: 'Bump dependencies in external repositories upon a release'
+name: 'Spinnaker Release Info'
+description: 'Retrieve previous tag of same type'
 inputs:
-  ref:
-    description: 'the release ref triggering this dependency bump'
+  tag:
+    description: 'the tag triggering this action'
     required: true
   baseBranch:
     description: 'the branch to update'
     required: false
     default: 'master'
-  key:
-    description: 'the key in gradle.properties to modify'
-    required: true
+  repository:
+      description: 'the repository  to modify'
+      required: true
   repositories:
     description: 'the comma-separated list of repository names to modify'
     required: true
@@ -18,26 +18,6 @@ inputs:
     description: 'the owner of the repositories to modify'
     required: true
     default: spinnakerbot
-  upstreamOwner:
-    description: 'the owner of the repositories to send pull requests to'
-    required: true
-    default: spinnaker
-  reviewers:
-    description: "the comma-separated list of reviewers (prefixed with 'team:' for a team) for the pull request"
-    required: true
-    default: ''
-  mavenRepositoryUrl:
-    description: "the root URL for the repository where this artifact is stored"
-    required: false
-    default: ''
-  groupId:
-    description: 'the groupId for the artifact in the maven repository'
-    required: false
-    default: ''
-  artifactId:
-    description: 'the artifactId for the artifact in the maven repository'
-    required: false
-    default: ''
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -46,19 +26,7 @@ runs:
   - ${{ inputs.ref }}
   - '--base-branch'
   - ${{ inputs.baseBranch }}
-  - '--key'
-  - ${{ inputs.key }}
-  - '--repositories'
-  - ${{ inputs.repositories }}
+  - '--repository'
+  - ${{ inputs.repository }}
   - '--repo-owner'
   - ${{ inputs.repoOwner }}
-  - '--upstream-owner'
-  - ${{ inputs.upstreamOwner }}
-  - '--reviewers'
-  - ${{ inputs.reviewers }}
-  - '--maven-repository-url'
-  - ${{ inputs.mavenRepositoryUrl }}
-  - '--group-id'
-  - ${{ inputs.groupId }}
-  - '--artifact-id'
-  - ${{ inputs.artifactId }}

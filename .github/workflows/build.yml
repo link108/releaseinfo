@@ -10,8 +10,8 @@ env:
 
 jobs:
   branch-build:
-    # Only run this on repositories in the 'spinnaker' org, not on forks.
-    if: startsWith(github.repository, 'spinnaker/')
+    # Only run this on repositories in the 'link108' org, not on forks.
+    if: startsWith(github.repository, 'link108/')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
