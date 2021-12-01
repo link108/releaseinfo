@@ -27,23 +27,20 @@ class ReleaseInfo : CliktCommand() {
         const val BASE_BRANCH = "master"
     }
 
-    private val version by option("--ref", help = "the release ref triggering this dependency bump").convert { ref ->
-        if (!ref.startsWith(REF_PREFIX)) {
-            fail("Ref '$ref' is not a valid release ref")
-        }
-        ref.removePrefix(REF_PREFIX)
-    }.required()
+//    private val version by option("--ref", help = "the release ref triggering this dependency bump").convert { ref ->
+//        if (!ref.startsWith(REF_PREFIX)) {
+//            fail("Ref '$ref' is not a valid release ref")
+//        }
+//        ref.removePrefix(REF_PREFIX)
+//    }.required()
 
-    private val tag by option(help = "the tag that triggered the build")
-        .required()
+//    private val tag by option(help = "the tag that triggered the build")
+//        .required()
 
     private val repository by option(help = "the repository to gather release info for")
         .required()
 
     private val repoOwner by option(help = "the owner of the repositories to modify")
-        .required()
-
-    private val upstreamOwner by option(help = "the owner of the repositories to send pull requests to")
         .required()
 
     private val oauthToken by lazy {
