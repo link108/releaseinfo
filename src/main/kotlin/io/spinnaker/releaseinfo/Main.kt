@@ -1,14 +1,19 @@
 package io.spinnaker.releaseinfo
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.core.UsageError
 import com.github.ajalt.clikt.core.context
 import com.github.ajalt.clikt.output.CliktHelpFormatter
-import com.github.ajalt.clikt.parameters.options.convert
 import com.github.ajalt.clikt.parameters.options.default
 import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.options.required
 import mu.KotlinLogging
+import java.net.URI
+import java.net.http.HttpClient
+import java.net.http.HttpRequest
+import java.net.http.HttpResponse
+
 
 class ReleaseInfo : CliktCommand() {
 
@@ -51,7 +56,20 @@ class ReleaseInfo : CliktCommand() {
         logger.info { "Tag: " + tag }
         logger.info { "RepoOnwer: " + repoOwner }
         logger.info { "Repository: " + repository }
-        logger.info { "HELLO WORLD" }
+
+        val authorization = "Bearer " + oauthToken
+        val baseUrl = "https://api.github.com/repos/spinnaker/orca/releases"
+        val objectMapper = ObjectMapper()
+
+        var request = HttpRequest.newBuilder().uri(URI.create(baseUrl))
+            .setHeader("Authorization", authorization)
+            .GET()
+            .build();
+
+        var response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        var jsonNode = objectMapper.readTree(response.body())
+        logger.info { response.body() }
+
     }
 }
 
